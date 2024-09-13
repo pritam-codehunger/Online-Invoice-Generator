@@ -1,3 +1,144 @@
 :root {
-  --heading-color: #048b9f;
+  --primary-color: #048b9f;
+  /* heading */
+  --heading-color: var(--primary-color);
+  --heading-text-white: #ffffff;
+  /*end heading */
+  /* menu */
+  --menu-title: var(--primary-color);
+  --menu-desc: #17222a;
+  --menu-item-name: #5e5d6d;
+  --menu-item-hover: var(--primary-color);
+  --menu-btn-login-text: var(--primary-color);
+  --menu-btn-login-bg: #048b9f21;
+  --menu-btn-try-text: #ffffff;
+  --menu-btn-try-bg: var(--primary-color);
+  /* end menu */
 }
+
+/*----- heading */
+.Heading {
+  background-color: var(--heading-color);
+}
+.heading-p {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  color: var(--heading-text-white);
+  padding-top: 10px;
+}
+.heading-close {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 40px;
+}
+
+/*----- end heading */
+/*----- menu */
+.menu-margin {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.navbar-brand {
+  color: var(--menu-title) !important;
+  font-family: Inter;
+  font-size: 55px;
+  font-weight: 700;
+  text-align: left;
+}
+.navbar-brand small {
+  display: block;
+  letter-spacing: 2px;
+  color: var(--menu-desc);
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.84em;
+  text-align: left;
+}
+.navbar-nav .nav-link {
+  color: var(--menu-item-name);
+  margin-right: 20px;
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: left;
+}
+.navbar-nav .nav-link:hover {
+  color: var(--menu-item-hover) !important;
+}
+.btn-menu {
+  width: 150px;
+  margin: 0px 5px 0px 5px;
+}
+.btn-login {
+  color: var(--menu-btn-login-text);
+  background-color: var(--menu-btn-login-bg);
+  border-color: var(--menu-btn-login-bg);
+  font-weight: 500;
+}
+.btn-login:hover {
+  background-color: var(--menu-btn-login-text);
+  border-color: var(--menu-btn-login-text);
+  color: var(--menu-btn-try-text);
+}
+.btn-try {
+  color: var(--menu-btn-try-text);
+  background-color: var(--menu-btn-try-bg);
+  border-color: var(--menu-btn-try-bg);
+  font-weight: 500;
+}
+.btn-try:hover {
+  background-color: var(--menu-btn-login-bg);
+  border-color: var(--menu-btn-login-bg);
+  color: var(--menu-btn-login-text);
+}
+/* -menu icon */
+/* Icon before toggling (hamburger menu) */
+.navbar-toggler-icon {
+  width: 30px;
+  height: 3px;
+  background-color: var(--primary-color);
+  display: block;
+  position: relative;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: "";
+  width: 30px;
+  height: 3px;
+  background-color: var(--primary-color);
+  position: absolute;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler-icon::before {
+  top: -10px;
+}
+
+.navbar-toggler-icon::after {
+  top: 10px;
+}
+
+/* Icon after toggling (close menu) */
+.navbar-toggler.open .navbar-toggler-icon {
+  background-color: transparent;
+}
+
+.navbar-toggler.open .navbar-toggler-icon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.navbar-toggler.open .navbar-toggler-icon::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+/* -end menu icon */
+/* -----end menu */
