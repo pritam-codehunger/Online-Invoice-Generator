@@ -28,6 +28,10 @@
   --section-2-end-triangle: var(--dark);
   --section-2-p: var(--black);
   /* end section 2 */
+  /* section 3 */
+  --sec-3-h2: #1c1934;
+  --sec-3-p: #5e5d6d;
+  /* end section 3 */
 }
 
 /*----- heading --------------------------------------------------------------------*/
@@ -328,3 +332,415 @@
 }
 
 /* -----end section 2-------------------------------------------------------------------- */
+/* -----section 3-------------------------------------------------------------------- */
+.section-3 {
+  margin: 10px 0px;
+}
+.section-3-border {
+  border-style: solid;
+  border-color: var(--primary-color);
+  border-width: 3px;
+  margin-top: 100px;
+  margin-bottom: 30px;
+  width: 100px;
+}
+.section-3-border-div {
+  padding-left: 100px;
+}
+.sec-3-h2 {
+  font-family: Inter;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 58.09px;
+  text-align: left;
+  color: var(--sec-3-h2);
+}
+
+.sec-3-p {
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: left;
+  color: var(--sec-3-p);
+}
+
+.sec-3-btn {
+  padding: 15px 60px 15px 60px;
+  color: white;
+  background-color: var(--section-1-btn);
+  font-size: 20px;
+  font-weight: 500;
+  margin: 20px 0px 10px 0px;
+}
+.sec-3-btn:hover {
+  color: var(--section-1-btn);
+  background-color: white;
+  border: solid 1px var(--section-1-btn);
+}
+.sec-3-right {
+  text-align: center;
+}
+.sec-3-left {
+  padding-left: 100px;
+}
+.sec-sys-1 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: left;
+}
+.sec-sys-2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: left;
+}
+.sec-sys-3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: left;
+}
+.sec-sys-4 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: left;
+}
+
+@media only screen and (max-width: 1200px) {
+  .section-3-border-div {
+    padding-left: 60px;
+  }
+  .sec-3-left {
+    padding-left: 60px;
+  }
+  .sec-3-right img {
+    height: 400px;
+    width: 400px;
+    text-align: start;
+  }
+  .sec-3-h2 {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 40px;
+  }
+
+  .sec-3-p {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 20px;
+  }
+  .sec-3-btn {
+    padding: 15px 40px 15px 40px;
+    background-color: var(--section-1-btn);
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .sec-sys-1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+  .sec-sys-1 img {
+    margin-right: 8px;
+    height: 30px;
+  }
+  .sec-sys-2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+  .sec-sys-2 img {
+    margin-right: 8px;
+    height: 30px;
+  }
+  .sec-sys-3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+  .sec-sys-3 img {
+    margin-right: 8px;
+    height: 30px;
+  }
+  .sec-sys-4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+  .sec-sys-4 img {
+    margin-right: 8px;
+    height: 30px;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .sec-3-right img {
+    height: 350px;
+    width: 300px;
+    text-align: start;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .section-3-border-div {
+    padding-left: 60px;
+  }
+  .sec-3-left {
+    padding-left: 60px;
+  }
+  .sec-3-h2 {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 40px;
+  }
+
+  .sec-3-p {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 20px;
+  }
+  .sec-3-btn {
+    padding: 15px 40px 15px 40px;
+    background-color: var(--section-1-btn);
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .sec-sys-1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+  .sec-sys-1 img {
+    margin-right: 8px;
+    height: 30px;
+  }
+  .sec-sys-2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+  .sec-sys-2 img {
+    margin-right: 8px;
+    height: 30px;
+  }
+  .sec-sys-3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+  .sec-sys-3 img {
+    margin-right: 8px;
+    height: 30px;
+  }
+  .sec-sys-4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+  .sec-sys-4 img {
+    margin-right: 8px;
+    height: 30px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .sec-3-right {
+    text-align: center;
+  }
+  .sec-3-right img {
+    height: 500px;
+    width: 500px;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .sec-3-h2 {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 30px;
+  }
+  .sec-3-p {
+    font-size: 10px;
+    font-weight: 200;
+    line-height: 15px;
+  }
+  .sec-3-right {
+    text-align: center;
+  }
+  .sec-3-right img {
+    height: 200px;
+    width: 200px;
+    text-align: center;
+  }
+  .sec-3-btn {
+    padding: 10px 30px 10px 30px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
+
+/* -----end section 3-------------------------------------------------------------------- */
+
+/* -----section 4-------------------------------------------------------------------- */
+.sec-4 {
+  object-fit: cover;
+  margin: 100px;
+  padding: 100px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+}
+.sec-4-h2 {
+  font-family: Inter;
+  font-size: 55px;
+  font-weight: 700;
+  line-height: 66.56px;
+  text-align: center;
+  color: #ffffff;
+}
+.sec-4-p {
+  font-family: Poppins;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 39px;
+  text-align: center;
+  color: #ffffff;
+}
+.sec-4-btn {
+  padding: 15px 60px 15px 60px;
+  color: var(--primary-color);
+  background-color: #ffffff;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 20px 0px 10px 0px;
+}
+.sec-4-btn:hover {
+  color: var(--primary-color);
+  background-color: #ffffff;
+  border: solid 1px var(--primary-color);
+}
+.sec-4-h2 {
+  font-family: Inter;
+  font-size: 55px;
+  font-weight: 700;
+  line-height: 66.56px;
+  text-align: center;
+  color: #ffffff;
+}
+
+@media only screen and (max-width: 1100px) {
+  .sec-4-h2 {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 50px;
+  }
+  .sec-4-p {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .sec-4 {
+    object-fit: cover;
+    margin: 100px;
+    padding: 100px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+  }
+  .sec-4-h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+  }
+  .sec-4-p {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+  .sec-4-btn {
+    padding: 10px 30px 10px 30px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .sec-4 {
+    margin: 100px;
+    padding: 40px;
+    background-size: 100% 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .sec-4-h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+  }
+  .sec-4-p {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+  .sec-4-btn {
+    padding: 10px 30px 10px 30px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .sec-4 {
+    margin: 100px;
+    padding: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .sec-4-h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 17px;
+  }
+  .sec-4-p {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 17px;
+  }
+  .sec-4-btn {
+    padding: 10px 20px 10px 20px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
+/* -----end section 4-------------------------------------------------------------------- */
