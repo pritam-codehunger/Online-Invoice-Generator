@@ -32,6 +32,10 @@
   --sec-3-h2: #1c1934;
   --sec-3-p: #5e5d6d;
   /* end section 3 */
+  /* section 5 */
+  --sec-5-h2: #1c1934;
+  --sec-5-p: #4e4e4e;
+  /* end section 5 */
 }
 
 /*----- heading --------------------------------------------------------------------*/
@@ -744,3 +748,220 @@
   }
 }
 /* -----end section 4-------------------------------------------------------------------- */
+/* -----section 5-------------------------------------------------------------------- */
+.section-5-margin {
+  margin-top: 100px !important;
+  margin-bottom: 50px;
+}
+.section-5-border-div {
+  display: flex;
+  justify-content: center;
+}
+.section-5-border {
+  border-style: solid;
+  border-color: var(--primary-color);
+  border-width: 3px;
+  margin-top: 100px;
+  margin-bottom: 30px;
+  width: 100px;
+}
+.sec-5-h2 {
+  font-family: Inter;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 58.09px;
+  text-align: center;
+  color: var(--sec-5-h2);
+}
+.sec-5-p {
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: center;
+  color: var(--sec-5-p);
+}
+@media only screen and (max-width: 800px) {
+  .sec-5-h2 {
+    font-size: 35px;
+    line-height: 35px;
+  }
+  .sec-5-p {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .sec-5-h2 {
+    font-size: 30px;
+    line-height: 30px;
+  }
+  .sec-5-p {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
+/* -----end section 5-------------------------------------------------------------------- */
+/* -----section 6-------------------------------------------------------------------- */
+.section-6-margin {
+  margin-bottom: 50px;
+}
+.sec-6-part-1-h2 {
+  font-family: Poppins;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 48px;
+  text-align: left;
+  color: var(--primary-color);
+}
+.sec-6-part-1-p {
+  font-family: Poppins;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 36px;
+  text-align: justified;
+  color: var(--black);
+}
+.sec-6-col-margin {
+  margin-top: 100px;
+}
+@media only screen and (max-width: 1480px) {
+  .sec-6-img {
+    height: 350px;
+  }
+}
+@media only screen and (max-width: 1260px) {
+  .sec-6-img {
+    height: 300px;
+  }
+  .sec-6-part-1-h2 {
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 40px;
+  }
+  .sec-6-part-1-p {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+}
+@media only screen and (max-width: 1077px) {
+  .sec-6-img {
+    height: 250px;
+  }
+  .sec-6-part-1-h2 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 35px;
+  }
+  .sec-6-part-1-p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 25px;
+  }
+  .sec-6-col-margin {
+    margin-top: 70px;
+  }
+}
+@media only screen and (max-width: 911px) {
+  .sec-6-img {
+    height: 200px;
+  }
+  .sec-6-part-1-h2 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 33px;
+  }
+  .sec-6-part-1-p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 23px;
+  }
+  .sec-6-col-margin {
+    margin-top: 70px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .sec-6-col-margin {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .sec-6-img {
+    height: 150px;
+  }
+  .sec-6-part-1-h2 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 33px;
+  }
+  .sec-6-part-1-p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 23px;
+  }
+  .sec-6-col-margin {
+    margin-top: 50px;
+  }
+}
+/* -----end section 6 -------------------------------------------------------------------- */
+/* -----section 7 -------------------------------------------------------------------- */
+.sec-7 {
+  background-color: #048b9f;
+}
+.sec-7-part-1-h2 {
+  font-family: Inter;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 58.09px;
+  text-align: left;
+  color: var(--text-white);
+}
+.sec-7-part-1-p {
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: left;
+  color: var(--text-white);
+}
+
+.sec-7-sys-1 {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: var(--text-white);
+}
+.sec-7-sys-2 {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: var(--text-white);
+}
+.sec-7-sys-3 {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: var(--text-white);
+}
+.sec-7-sys-4 {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: var(--text-white);
+}
+
+.sec-7-part-1 {
+}
+.sec-7-part-2 {
+}
+/* -----end section 7 -------------------------------------------------------------------- */
