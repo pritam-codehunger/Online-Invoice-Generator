@@ -908,8 +908,17 @@
 /* -----end section 6 -------------------------------------------------------------------- */
 /* -----section 7 -------------------------------------------------------------------- */
 .sec-7 {
-  background-color: #048b9f;
+  background-color: var(--primary-color);
+  padding: 0px 0px;
+  margin: 100px 0px;
 }
+
+.sec-7-part-1 {
+  padding: 92px 100px;
+}
+.sec-7-part-2 {
+}
+
 .sec-7-part-1-h2 {
   font-family: Inter;
   font-size: 48px;
@@ -960,8 +969,118 @@
   color: var(--text-white);
 }
 
-.sec-7-part-1 {
+.sec-7-btn {
+  font-family: Space Grotesk;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: left;
+  padding: 10px 20px 10px 20px;
+  color: white;
+  background-color: var(--primary-color);
+  margin: 20px 0px 10px 0px;
+  border-radius: 0px;
+  border-color: white;
 }
-.sec-7-part-2 {
+.sec-7-btn:hover {
+  color: var(--primary-color);
+  background-color: white;
+  border-color: var(--primary-color);
 }
+
+.sec-7-part-2 .sec-7-left-img img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin-left: 12px;
+}
+
+@media only screen and (max-width: 1440px) {
+  .sec-7-part-1-h2 {
+    font-size: 31px;
+    font-weight: 700;
+    line-height: 38.09px;
+  }
+  .sec-7-part-1-p {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 23px;
+  }
+  .sec-7-sys-1 {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 14px;
+  }
+  .sec-7-sys-2 {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 14px;
+  }
+  .sec-7-sys-3 {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 14px;
+  }
+  .sec-7-sys-4 {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 14px;
+  }
+
+  .sec-7-sys-1 img {
+    height: 15px;
+  }
+  .sec-7-sys-2 img {
+    height: 15px;
+  }
+  .sec-7-sys-3 img {
+    height: 15px;
+  }
+  .sec-7-sys-4 img {
+    height: 15px;
+  }
+
+  .sec-7-btn {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 18px;
+    padding: 10px 20px 10px 20px;
+    margin: 20px 0px 10px 0px;
+  }
+  .sec-7-part-2 .sec-7-left-img img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    margin-left: 12px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .sec-7-btn {
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 18px;
+    padding: 5px 10px 5px 10px;
+    margin: 20px 0px 10px 0px;
+  }
+  .sec-7-part-1 {
+    padding: 20px 100px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .sec-7-part-1-h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 22.09px;
+  }
+  .sec-7-part-1-p {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+  .sec-7-part-1 {
+    padding: 10px 25px;
+  }
+}
+
 /* -----end section 7 -------------------------------------------------------------------- */
