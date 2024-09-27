@@ -1093,6 +1093,8 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .sec-8-h2 {
@@ -1227,3 +1229,101 @@
 }
 
 /* -----end section 8 -------------------------------------------------------------------- */
+/* ----- footer -------------------------------------------------------------------- */
+
+.footer {
+  background-color: var(--primary-color);
+  padding: 250px 0px 60px 0px;
+  position: relative;
+  z-index: 1;
+  margin-top: -220px;
+}
+
+.footer-invoice-invoice {
+  font-family: Inter;
+  font-size: 55px;
+  font-weight: 700;
+  line-height: 25.56px;
+  text-align: left;
+  color: white;
+}
+.footer-invoice-generator {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.84em;
+  text-align: left;
+  color: white;
+}
+.footer-invoice-p {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: left;
+  color: white;
+}
+.footer-invoice-title-h5 {
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 30px;
+  text-align: left;
+  color: white;
+}
+.footer-li {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: left;
+  color: white;
+}
+.footer-li:hover {
+  color: #dddddd;
+}
+@media only screen and (max-width: 1200px) {
+  .footer {
+    margin-top: -300px;
+    padding: 220px 0px 60px 0px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .footer {
+    margin-top: -200px;
+    padding: 90px 0px 60px 0px;
+  }
+  .footer-invoice-invoice {
+    font-size: 45px;
+  }
+  .footer-invoice-generator {
+    font-size: 16px;
+  }
+  .footer-invoice-p {
+    font-size: 12px;
+  }
+  .footer-invoice-title-h5 {
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 20px;
+  }
+  .footer-li {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+}
+@media only screen and (max-width: 840px) {
+  .footer {
+    margin-top: -143px;
+    padding: 90px 0px 60px 0px;
+  }
+}
+@media only screen and (max-width: 721px) {
+  .footer {
+    margin-top: -60px;
+    padding: 90px 0px 60px 0px;
+  }
+}
+/* -----end footer -------------------------------------------------------------------- */
