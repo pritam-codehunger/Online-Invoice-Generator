@@ -12,63 +12,15 @@
     <!-- Google Font: Space Grotesk -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 
-
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <title>Online Invoice Generator</title>
 </head>
 
 <body>
-    <!-- Heading -->
-    <div class="Heading">
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="col-sm-0 col-md-3 col-lg-3">
-            </div>
-            <div class="col-sm-8 col-md-6 col-lg-6">
-                <p class="heading-p">Unlimited apps and integrations | explore connections →</p>
-            </div>
-            <div class="col-sm-4 col-md-3 col-lg-3">
-                <div class="heading-close">
-                    <img src="assets/image/heading/heading-Close.svg" alt="close">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Heading -->
-    <!-- menu -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white menu-margin">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                Invoice <br><small>Generator</small>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="menuToggle">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Solutions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Career</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Company</a>
-                    </li>
-                </ul>
-                <div class="d-flex">
-                    <button type="button" class="btn btn-menu btn-login" onclick="">Log In</button>
-                    <button type="button" class="btn btn-menu btn-try" onclick="">Try for free</button>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- end menu -->
+    <!-- Header Section -->
+    <header id="header"></header>
 
     <!-- section-1 -->
     <div class="section-1-gradient-bg row">
@@ -81,7 +33,8 @@
                 business running, payments from clients must be received on time. However, the process of
                 producing invoices can often be quite tedious, which is why many business owners defer it to the last
                 possible minute.</p>
-            <button class="btn section-1-btn">Create Free Invoice Now</button>
+            <button class="btn section-1-btn" onclick="window.location.href='invoice.html'">Create Free Invoice
+                Now</button>
             <div class="section-1-true">
                 <p class="section-1-true-p-1"><img src="assets/image/section 1/true-material-symbols_check-circle.svg"
                         alt="" /> Trusted by 16,160
@@ -318,87 +271,14 @@
     </div>
     <!-- end section 7 -->
 
-    <!-- section 8 -->
-    <!-- <div class="container-fluid row sec-8">
-    </div> -->
-    <div class="row sec-8" style="background-image: url('assets/image/section 8/black-bg.svg');">
-        <div class="col-sm-0 col-md-0 col-lg-2">
-        </div>
-        <div class="col-sm-12 col-md-12 col-lg-8">
-            <h2 class="sec-8-h2">Generate unlimited invoices & PDF download</h2>
-            <p class="sec-8-p">The intuitive all-in-one solution to manage and collaborate on projects, share files,
-                build
-                forms, create proposals, get paid, and automate your workflow.</p>
-            <button class="btn sec-8-btn">Create Free Invoice Now</button>
-        </div>
-        <div class="col-sm-0 col-md-0 col-lg-2">
-        </div>
-    </div>
-    <!-- end section 8 -->
-
-    <!-- footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-sm-12 col-md-12 col-lg-2 my-3">
-                    <h5 class="footer-invoice-invoice">Invoice </h5>
-                    <p class="footer-invoice-generator">Generator</p>
-                    <p class="footer-invoice-p">Streamline inventory management and order fulfillment.</p>
-                </div>
-
-                <div class="col-sm-0 col-md-0 col-lg-2">
-                </div>
-
-                <div class="col-sm-6 col-md-6 col-lg-2 my-3">
-                    <h5 class="footer-invoice-title-h5">Product</h5>
-                    <ul class="list-unstyled">
-                        <li class="footer-li">Automation</li>
-                        <li class="footer-li">Payments</li>
-                        <li class="footer-li">Observability</li>
-                        <li class="footer-li">Reconciliation</li>
-                    </ul>
-                </div>
-
-                <div class="col-sm-6 col-md-6 col-lg-2 my-3">
-                    <h5 class="footer-invoice-title-h5">Support</h5>
-                    <ul class="list-unstyled">
-                        <li class="footer-li">On-boarding</li>
-                        <li class="footer-li">Help center</li>
-                        <li class="footer-li">Contact us</li>
-                        <li class="footer-li">Expert</li>
-                        <li class="footer-li">Status</li>
-                    </ul>
-                </div>
-
-                <div class="col-sm-6 col-md-6 col-lg-2 my-3">
-                    <h5 class="footer-invoice-title-h5">Resources</h5>
-                    <ul class="list-unstyled">
-                        <li class="footer-li">Community</li>
-                        <li class="footer-li">Affiliates</li>
-                        <li class="footer-li">Partnerships</li>
-                        <li class="footer-li">Perks & benefits</li>
-                        <li class="footer-li">API docs</li>
-                    </ul>
-                </div>
-
-                <div class="col-sm-6 col-md-6 col-lg-2 my-3">
-                    <h5 class="footer-invoice-title-h5">Company</h5>
-                    <ul class="list-unstyled">
-                        <li class="footer-li">About us</li>
-                        <li class="footer-li">Blog</li>
-                        <li class="footer-li">Press</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- end footer -->
+    <!-- Footer Section -->
+    <div id="footer"></div>
 
     <script src="assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="assets/js/popper.min.js" crossorigin="anonymous"></script>
     <script src="assets/js/jquery.js" crossorigin="anonymous"></script>
     <script src="assets/js/js.js" crossorigin="anonymous"></script>
+    <script src="assets/js/invoice.js" crossorigin="anonymous"></script>
 
 </body>
 
