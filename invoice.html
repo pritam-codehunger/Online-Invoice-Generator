@@ -15,6 +15,7 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/invoice.css" rel="stylesheet">
+    <link href="assets/css/imporve.css" rel="stylesheet">
     <title>Online Invoice Generator</title>
 </head>
 
@@ -54,107 +55,10 @@
     </div>
 
     <div class="container my-2">
-        <!-- Loading Spinner -->
-        <div class="modal fade show" id="loadingSpinner" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel"
-            aria-hidden="true" style="background: #00000026;display: none;">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="d-flex align-items-center">
-                            <strong>Sending...</strong>
-                            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- show all models -->
+        <div id="modals">
         </div>
-
-        <div class="modal fade show" id="LoadSpinner" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel"
-            aria-hidden="true" style="background: #00000026;display: none;">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="d-flex align-items-center">
-                            <strong>Loading...</strong>
-                            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Email Modal -->
-        <div class="modal fade show" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel"
-            aria-hidden="true" style="background: #00000026;">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="emailModalLabel">Send Invoice Email</h5>
-                        <button type="button" class="btn-close" id="closeemailModal" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="emailForm">
-                            <div class="form-group my-1">
-                                <label for="senderEmail">Sender Email <span class="text-danger"> *</span>
-                                    <span class="tooltipinfo d-inline-block"
-                                        data-tooltipinfo="Enter the email address from which the invoice will be sent."
-                                        data-tooltipinfo-pos="right" data-tooltip-length="medium"><img
-                                            src="assets/image/invoice/info.png" style="height: 15px" /></span>
-                                </label>
-                                <input type="email" class="form-control" placeholder="example@gmail.com"
-                                    id="senderEmail">
-                            </div>
-                            <div class="form-group my-1">
-                                <label for="recipientEmail">Receiver Email <span class="text-danger"> *</span>
-                                    <span class="tooltipinfo d-inline-block"
-                                        data-tooltipinfo="Enter the email address of the recipient who will receive the invoice."
-                                        data-tooltipinfo-pos="right" data-tooltip-length="medium"><img
-                                            src="assets/image/invoice/info.png" style="height: 15px" /></span>
-                                </label>
-                                <input type="email" class="form-control" placeholder="example@gmail.com"
-                                    id="recipientEmail">
-                            </div>
-                            <div class="form-group my-1">
-                                <label for="SubjectEmail">Subject <span class="text-danger"> *</span></label>
-                                <input type="text" class="form-control" id="subjectEmail">
-                            </div>
-                            <div class="form-group my-1">
-                                <label for="emailMessage">Message</label>
-                                <textarea class="form-control" id="emailMessage" rows="3"></textarea>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="submitButton" class="btn btn-primary">Send Email</button>
-                        <button type="button" class="btn btn-secondary" id="btncloseemailModal"
-                            data-bs-dismiss="modal">Close</button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- end email model -->
-
-        <!-- Success Modal -->
-        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="successModalLabel">Email Sent Successfully</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p class="text-success" id="successMessageEmail"></p>
-                        <p id="senderEmailMess"></p>
-                        <p id="recipientEmailMess"></p>
-                        <p id="subjectMess"></p>
-                        <p id="emailMessageMess"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- end show all models -->
 
         <h1 class="d-flex justify-content-center">Invoice Generator</h1>
 
@@ -169,38 +73,56 @@
         <div class="card container " id="invoice">
 
             <div class="row invoice-header">
+
                 <div class="col-md-6">
                     <div class="col-md-3">
                         <div class="invoice-logo">
-                            <span>+ Add Your Logo</span>
+                            <span><img src="assets/image/invoice/upload-image.png" />+ Add Your Logo</span>
                             <input type="file" id="logoInput" accept="image/*">
                             <img id="logoImage" alt="Logo" style="display: none;">
                             <button id="removeLogo" class="remove-logo" style="display: none;"
                                 aria-label="Remove Logo">&times;</button>
                         </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-4">
-                            <label class="col-md-6 text-right d-flex align-items-center"><b>From :- </b><span
-                                    class="text-danger hide-t"> *</span></label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group col-md-12 heading-section">
+                        <input type="text" class="form-control invoice-heading mb-2" placeholder="Invoice Heading"
+                            value="Invoice">
+                        <h1 class="invoice-title d-flex justify-content-end  my-1 heading-label-show"></h1>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row mt-3 from-section">
+                        <div class="col-md-6">
+                            <label class="text-right d-flex align-items-center from-label"><b>From</b><span
+                                    class="text-danger hide-t">
+                                    <pre> *</pre>
+                                </span></label>
                             <div>
                                 <textarea class="parent-hide form-control from-write" id="from"
                                     placeholder="Who is this from?"></textarea>
                                 <label class="d-flex justify-content-start from-show mb-2"></label>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="col-md-6 text-right d-flex align-items-center"><b>Bill To
-                                    :-</b><span class="text-danger hide-t"> *</span></label>
+
+                        <div class="col-md-6">
+                            <label class="text-right d-flex align-items-center from-label"><b>Bill To</b><span
+                                    class="text-danger hide-t">
+                                    <pre> *</pre>
+                                </span></label>
                             <div>
                                 <textarea class="parent-hide form-control biil-to-write" id="billTo"
                                     placeholder="Who is this to?(Bill To)"></textarea>
                                 <label class="d-flex justify-content-start biil-to-show mb-2"></label>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="col-md-6 text-right d-flex align-items-center"><b>Ship To
-                                    :-</b></label>
+                        <div class="col-md-12">
+                            <label class="text-right d-flex align-items-center from-label"><b>Ship
+                                    To</b><span class="text-danger hide-t">
+                                    <pre> </pre>
+                                </span></label>
                             <div>
                                 <textarea class="parent-hide form-control ship-to-write" id="shipTo"
                                     placeholder="Ship To (optional)"></textarea>
@@ -210,44 +132,43 @@
 
                     </div>
                 </div>
-                <div class="col-md-6 row">
-                    <div class="form-group">
-                        <input type="text" class="form-control invoiceHeading text-danger mb-2"
-                            placeholder="Invoice Heading">
-                        <h1 class="invoice-title d-flex justify-content-end my-1 text-danger"></h1>
-                    </div>
-                    <div class="col-md-3">
-                    </div>
-                    <div class="col-md-9">
+                <div class="col-md-6 row header-left">
+                    <div class="col-md-12 basic-section">
                         <div class="form-group row ">
-                            <label class="col-md-6 text-right">ID :-</label>
-                            <div class="col-md-6">
-                                <input type="text" class="parent-hide form-control-plaintext form-control" value="101">
+                            <label class="col-md-3 text-right basic-info-lable"><b>ID</b></label>
+                            <div class="col-md-9">
+                                <input type="text"
+                                    class="parent-hide form-control-plaintext form-control basic-info-input"
+                                    value="101">
                             </div>
                         </div>
                         <div class="form-group row ">
-                            <label class="col-md-6 text-right">Date :-</label>
-                            <div class="col-md-6">
-                                <input type="date" class="parent-hide form-control-plaintext form-control">
+                            <label class="col-md-3 text-right basic-info-lable"><b>Date</b></label>
+                            <div class="col-md-9">
+                                <input type="date"
+                                    class="parent-hide form-control-plaintext form-control basic-info-input">
                             </div>
                         </div>
                         <div class="form-group row ">
-                            <label class="col-md-6 text-right">Payment Terms :-</label>
-                            <div class="col-md-6">
-                                <input type="text" class="parent-hide form-control-plaintext form-control"
+                            <label class="col-md-3 text-right basic-info-lable"><b>Payment Terms</b></label>
+                            <div class="col-md-9">
+                                <input type="text"
+                                    class="parent-hide form-control-plaintext form-control basic-info-input"
                                     placeholder="Payment Terms">
                             </div>
                         </div>
                         <div class="form-group row ">
-                            <label class="col-md-6 text-right">Due Date :-</label>
-                            <div class="col-md-6">
-                                <input type="date" class="parent-hide form-control-plaintext form-control">
+                            <label class="col-md-3 text-right basic-info-lable"><b>Due Date</b></label>
+                            <div class="col-md-9">
+                                <input type="date"
+                                    class="parent-hide form-control-plaintext form-control basic-info-input">
                             </div>
                         </div>
                         <div class="form-group row ">
-                            <label class="col-md-6 text-right">PO Number :-</label>
-                            <div class="col-md-6">
-                                <input type="text" class="parent-hide form-control-plaintext form-control"
+                            <label class="col-md-3 text-right basic-info-lable"><b>PO Number</b></label>
+                            <div class="col-md-9">
+                                <input type="text"
+                                    class="parent-hide form-control-plaintext form-control basic-info-input"
                                     placeholder="PO Number">
                             </div>
                         </div>
@@ -283,17 +204,17 @@
                     </div>
                     <div class="input-group">
                         <label for="discount">Discount</label>
-                        <input style="width: 100px;" type="number" id="discount" value="0" min="0" max="100"
-                            oninput="calculateInvoice()">%
+                        <input style="width: 100px;" type="number" class="form-control" id="discount" value="0" min="0"
+                            max="100" oninput="calculateInvoice()">%
                     </div>
                     <div class="input-group">
                         <label for="tax">Tax</label>
-                        <input style="width: 100px;" type="number" id="tax" value="0" min="0" max="100"
-                            oninput="calculateInvoice()">%
+                        <input style="width: 100px;" type="number" class="form-control" id="tax" value="0" min="0"
+                            max="100" oninput="calculateInvoice()">%
                     </div>
                     <div class="input-group">
                         <label for="shipping">Shipping</label>
-                        <input style="width: 100px;" type="number" id="shipping" value="0" min="0"
+                        <input style="width: 100px;" type="number" class="form-control" id="shipping" value="0" min="0"
                             oninput="calculateInvoice()"><span class="sy"></span>
                     </div>
                     <div class="input-group total">
@@ -302,8 +223,8 @@
                     </div>
                     <div class="input-group">
                         <label for="amount-paid">Amount Paid</label>
-                        <input style="width: 100px;" type="number" id="amount-paid" value="0" min="0"
-                            oninput="calculateInvoice()"><span class="sya"></span>
+                        <input style="width: 100px;" class="form-control" type="number" id="amount-paid" value="0"
+                            min="0" oninput="calculateInvoice()"><span class="sya"></span>
                     </div>
                     <div class="input-group total">
                         <label for="balance-due">Balance Due</label>
@@ -332,23 +253,26 @@
                             <h6 class="bank-details-title">Bank Details</h6>
                             <div class="bank-form-group">
                                 <label for="accountName" class="">Account Name : </label>
-                                <input type="text" id="accountName" placeholder="Enter Account Name">
+                                <input type="text" class="form-control" id="accountName"
+                                    placeholder="Enter Account Name">
                             </div>
                             <div class="bank-form-group">
                                 <label for="accountNumber" class="">Account Number : </label>
-                                <input type="text" id="accountNumber" placeholder="Enter Account Number">
+                                <input type="text" class="form-control" id="accountNumber"
+                                    placeholder="Enter Account Number">
                             </div>
                             <div class="bank-form-group">
                                 <label for="ifsc" class="">IFSC : </label>
-                                <input type="text" id="ifsc" placeholder="Enter IFSC">
+                                <input type="text" class="form-control" id="ifsc" placeholder="Enter IFSC">
                             </div>
                             <div class="bank-form-group">
                                 <label for="accountType" class="">Account Type : </label>
-                                <input type="text" id="accountType" placeholder="Enter Account Type">
+                                <input type="text" class="form-control" id="accountType"
+                                    placeholder="Enter Account Type">
                             </div>
                             <div class="bank-form-group">
                                 <label for="bank" class="">Bank : </label>
-                                <input type="text" id="bank" placeholder="Enter Bank Name">
+                                <input type="text" class="form-control" id="bank" placeholder="Enter Bank Name">
                             </div>
                         </div>
                     </div>
@@ -358,7 +282,7 @@
                     <div class="col-4 ">
                         <div class="mt-3" id="upi-input">
                             <label for="upi-id">Enter UPI ID:</label>
-                            <input type="text" id="upi-id" placeholder="example@upi">
+                            <input type="text" class="form-control" id="upi-id" placeholder="example@upi">
                         </div>
                         <div class="hidden mt-3" id="upi-show">
                             <h6 class="text-center">UPI - Scan to Pay</h6>
@@ -372,13 +296,15 @@
                     <div class="col-4 mt-5">
                         <div class="authorized-signatory-parent">
                             <div class="authorized-signatory">
-                                <span class="mx-3">+ Add Authorized Signatory (Upload Image)</span>
+                                <!-- <span class="mx-3"><img src="assets/image/invoice/upload-image.png" />+ Add Authorized
+                                    Signatory</span> -->
+                                <span class="mx-3">+ Add Authorized Signator</span>
                                 <input type="file" id="signatoryInput" accept="image/*">
                                 <img id="signatoryImage" alt="Authorized Signatory" style="display: none;">
                                 <button id="removeSignatory" class="remove-signatory" style="display: none;"
                                     aria-label="Remove Signatory">&times;</button>
                             </div>
-                            <p class="text-center" id="Authorized-Text">Authorized Signatory</p>
+                            <p class="text-center" id="Authorized-Text">Authorized Signatory (Upload Image)</p>
                         </div>
                     </div>
                 </div>

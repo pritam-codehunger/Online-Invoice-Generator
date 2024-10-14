@@ -77,9 +77,9 @@ function updateTemplate() {
         </thead>
         <tbody id="invoice-items">
             <tr>
-                <td><input type="text" placeholder="Description of item/service..."></td>
-                <td><input type="number" value="0" oninput="calculateAmount(this)"></td>
-                <td><input type="number" value="0" oninput="calculateAmount(this)"></td>
+                <td><input class="form-control" type="text" placeholder="Description of item/service..."></td>
+                <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
+                <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
                 <td class="amount"></td>
                 <td class="hide-t"><button onclick="removeLineItem(this)">Remove</button></td>
             </tr>
@@ -98,9 +98,9 @@ function updateTemplate() {
         </thead>
         <tbody id="invoice-items">
             <tr>
-                <td><input type="text" placeholder="Description of item/service..."></td>
-                <td><input type="number" value="0" oninput="calculateAmount(this)"></td>
-                <td><input type="number" value="0" oninput="calculateAmount(this)"></td>
+                <td><input class="form-control" type="text" placeholder="Description of item/service..."></td>
+                <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
+                <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
                 <td class="amount"></td>
                 <td class="hide-t"><button onclick="removeLineItem(this)">Remove</button></td>
             </tr>
@@ -118,7 +118,7 @@ function updateTemplate() {
         </thead>
         <tbody id="invoice-items">
             <tr>
-                <td><input type="text" placeholder="Description of item/service..."></td>
+                <td><input class="form-control" type="text" placeholder="Description of item/service..."></td>
                 <td><input type="number" class="amount" value="0" oninput="calculateTotalOnlyAmount()"></td>
                 <td class="hide-t"><button onclick="removeLineItem(this)">Remove</button></td>
             </tr>
@@ -189,16 +189,16 @@ function addLineItem() {
 
     if (template == 'hours' || template == 'quantity') {
         newRow.innerHTML = `
-    <td><input type="text" placeholder="Description of item/service..."></td>
-    <td><input type="number" value="0" oninput="calculateAmount(this)"></td>
-    <td><input type="number" value="0" oninput="calculateAmount(this)"></td>
+    <td><input class="form-control" type="text" placeholder="Description of item/service..."></td>
+    <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
+    <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
     <td class="amount">${currencySymbol}00.00</td>
     <td class="hide-t"><button onclick="removeLineItem(this)">Remove</button></td>
     `;
     }
     if (template == 'amounts-only') {
         newRow.innerHTML = `
-    <td><input type="text" placeholder="Description of item/service..."></td>
+    <td><input class="form-control" type="text" placeholder="Description of item/service..."></td>
     <td><input type="number" class="amount" value="0" oninput="calculateTotalOnlyAmount()"></td>
     <td class="hide-t"><button onclick="removeLineItem(this)">Remove</button></td>
     `;
@@ -277,7 +277,7 @@ function calculateInvoice() {
 }
 //end calculate
 //this function use enter filed in text this store in p tag
-function updateContent(inputSelector, outputSelector) {
+function  updateContent(inputSelector, outputSelector) {
     document.querySelectorAll(inputSelector).forEach(function (element) {
         element.addEventListener('input', function () {
             document.querySelector(outputSelector).textContent = this.value;
@@ -289,7 +289,7 @@ updateContent('.term-write', '.term-show');
 updateContent('.from-write', '.from-show');
 updateContent('.biil-to-write', '.biil-to-show');
 updateContent('.ship-to-write', '.ship-to-show');
-updateContent('.invoiceHeading', '.invoice-title');
+updateContent('.invoice-heading', '.invoice-title');
 //this use enter filed in text this store in p tag.this p tag hide on invoice
 document.querySelectorAll('.invoice-title,.note-show,.term-show,.from-show,.biil-to-show,.ship-to-show').forEach(function (element) {
     element.classList.add('hidden');
@@ -308,7 +308,7 @@ function hideEmptyFields() {
     document.getElementById('invoice').classList.remove('card');
 
 
-    document.querySelectorAll('.invoiceHeading,.note-write,.term-write,.from-write,.biil-to-write,.ship-to-write').forEach(function (element) {
+    document.querySelectorAll('.invoice-heading,.note-write,.term-write,.from-write,.biil-to-write,.ship-to-write').forEach(function (element) {
         element.classList.add('hidden');
     });
 
@@ -348,7 +348,7 @@ function showHiddenFields() {
     document.getElementById('invoice').classList.add('card');
 
 
-    document.querySelectorAll('.invoiceHeading,.note-write,.term-write,.from-write,.biil-to-write,.ship-to-write').forEach(function (element) {
+    document.querySelectorAll('.invoice-heading,.note-write,.term-write,.from-write,.biil-to-write,.ship-to-write').forEach(function (element) {
         element.classList.remove('hidden');
     });
     document.querySelectorAll('.invoice-title,.note-show,.term-show,.from-show,.biil-to-show,.ship-to-show').forEach(function (element) {

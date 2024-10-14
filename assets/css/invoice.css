@@ -33,7 +33,7 @@
 }
 
 .invoice-header {
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .invoice-title {
@@ -52,6 +52,10 @@
   margin-bottom: 20px;
   position: relative;
   overflow: hidden;
+  margin-top: 50px;
+  margin-left: 20px;
+  padding: 40px;
+  border-radius: 10px;
 }
 
 .invoice-logo img {
@@ -60,6 +64,10 @@
   display: block;
   width: auto;
   height: auto;
+}
+
+.invoice-logo span img {
+  height: 50px;
 }
 
 .invoice-logo input {
@@ -206,15 +214,6 @@ textarea {
   display: none !important;
 }
 
-.invoiceHeading {
-  font-size: 2em;
-  font-weight: bold;
-  border: none;
-  background-color: transparent;
-  text-align: right;
-  margin-top: 20px;
-}
-
 .card-one {
   border: 1px solid #e3e6f0;
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
@@ -356,7 +355,12 @@ textarea {
   margin-bottom: 20px;
   position: relative;
   overflow: hidden;
+  /* border-radius: 10px; */
+  /* padding: 10px; */
 }
+/* .authorized-signatory span img{
+  height: 50px;
+} */
 
 .authorized-signatory img {
   max-width: 100%;

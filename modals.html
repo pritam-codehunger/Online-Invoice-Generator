@@ -1,0 +1,98 @@
+<!-- Loading Spinner -->
+<div class="modal fade show" id="loadingSpinner" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel"
+    aria-hidden="true" style="background: #00000026;display: none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="d-flex align-items-center">
+                    <strong>Sending...</strong>
+                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade show" id="LoadSpinner" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel"
+    aria-hidden="true" style="background: #00000026;display: none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="d-flex align-items-center">
+                    <strong>Loading...</strong>
+                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Email Modal -->
+<div class="modal fade show" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel"
+    aria-hidden="true" style="background: #00000026;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="emailModalLabel">Send Invoice Email</h5>
+                <button type="button" class="btn-close" id="closeemailModal" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="emailForm">
+                    <div class="form-group my-1">
+                        <label for="senderEmail">Sender Email <span class="text-danger"> *</span>
+                            <span class="tooltipinfo d-inline-block"
+                                data-tooltipinfo="Enter the email address from which the invoice will be sent."
+                                data-tooltipinfo-pos="right" data-tooltip-length="medium"><img
+                                    src="assets/image/invoice/info.png" style="height: 15px" /></span>
+                        </label>
+                        <input type="email" class="form-control" placeholder="example@gmail.com" id="senderEmail">
+                    </div>
+                    <div class="form-group my-1">
+                        <label for="recipientEmail">Receiver Email <span class="text-danger"> *</span>
+                            <span class="tooltipinfo d-inline-block"
+                                data-tooltipinfo="Enter the email address of the recipient who will receive the invoice."
+                                data-tooltipinfo-pos="right" data-tooltip-length="medium"><img
+                                    src="assets/image/invoice/info.png" style="height: 15px" /></span>
+                        </label>
+                        <input type="email" class="form-control" placeholder="example@gmail.com" id="recipientEmail">
+                    </div>
+                    <div class="form-group my-1">
+                        <label for="SubjectEmail">Subject <span class="text-danger"> *</span></label>
+                        <input type="text" class="form-control" id="subjectEmail">
+                    </div>
+                    <div class="form-group my-1">
+                        <label for="emailMessage">Message</label>
+                        <textarea class="form-control" id="emailMessage" rows="3"></textarea>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" id="submitButton" class="btn btn-primary">Send Email</button>
+                <button type="button" class="btn btn-secondary" id="btncloseemailModal"
+                    data-bs-dismiss="modal">Close</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- end email model -->
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Email Sent Successfully</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-success" id="successMessageEmail"></p>
+                <p id="senderEmailMess"></p>
+                <p id="recipientEmailMess"></p>
+                <p id="subjectMess"></p>
+                <p id="emailMessageMess"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end success Modal -->

@@ -9,4 +9,5 @@ function loadHTML(containerId, file) {
 }
 loadHTML('header', 'header.html');
 loadHTML('footer', 'footer.html');
+loadHTML('modals', 'modals.html');
 // header footer add
