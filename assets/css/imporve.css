@@ -1,31 +1,63 @@
 :root {
   --primary-color: #048b9f;
+  --input-border-color: #ddd;
+  --input-bg-color: #f8f9fa;
+  --primary-light-color: #048b9f21;
 }
 input,
-textarea {
+textarea,
+select {
   padding: 10px !important;
-  /* border: 1px solid black !important;
-  border-radius: 10px !important; */
-
-  border: 1px solid #ddd !important;
-  background-color: #f8f9fa !important;
-  /* color: #ccc !important; */
-
-  /* box-shadow: 1px blue !important;
-  color: #212529 !important;
-  background-color: #fff !important;
-  border-color: #86b7fe !important;
-  outline: 0 !important;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important; */
+  border: 1px solid var(--input-border-color) !important;
+  background-color: var(--input-bg-color) !important;
+  border-radius: 8px !important;
 }
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   border: 1px solid var(--primary-color) !important;
-  /* box-shadow:  !important; */
-  /* color: #212529 !important; */
-
   box-shadow: 0 0 0 2px var(--primary-color) !important;
 }
+
+/* Error styling */
+input.error,
+textarea.error,
+select.error {
+  border: 2px solid red !important;
+}
+/* header on invoice*/
+.heading-of-invoice {
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px;
+}
+
+.btn-pdf {
+  color: var(--primary-color);
+  background-color: var(--primary-light-color);
+  border-color: var(--primary-light-color);
+  font-weight: 500;
+}
+.btn-pdf:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+.btn-email {
+  color: white;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  font-weight: 500;
+}
+.btn-email:hover {
+  background-color: var(--primary-light-color);
+  border-color: var(--primary-light-color);
+  color: var(--primary-color);
+}
+
+/* end header on invoice */
+
 .from-section {
   margin-left: 10px;
 }
@@ -39,12 +71,9 @@ textarea:focus {
 }
 .heading-label-show {
   margin-top: 30px;
-  margin-right: 20px;
+  margin-left: 20px;
 }
 .invoice-title {
-  color: var(--primary-color);
-}
-.invoice-heading {
   color: var(--primary-color);
 }
 .invoice-heading {
@@ -54,21 +83,101 @@ textarea:focus {
   background-color: transparent;
   margin-top: 20px;
   padding: 18px !important;
+  color: var(--primary-color);
+  margin-left: 20px;
 }
-.basic-section {
-  margin: 0px 0px 0px 0px;
-}
-.basic-info-lable {
-  font-weight: 600;
+/* from */
+.from-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   align-content: center;
   text-align: start;
+  font-weight: 600;
+  font-size: 25px;
 }
-.basic-info-input {
+.from-info-lable {
+  font-weight: 600;
+  text-align: start;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.from-info-input {
   margin: 5px 0px 4px 0px;
   padding: 10px !important;
 }
-.from-label {
-  font-weight: 600;
+/* end from */
+/* bill to */
+.bill-to-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   align-content: center;
   text-align: start;
+  font-weight: 600;
+  font-size: 25px;
 }
+.bill-to-info-lable {
+  font-weight: 600;
+  text-align: start;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.bill-to-info-input {
+  margin: 5px 0px 4px 0px;
+  padding: 10px !important;
+}
+/* bill to */
+
+.hr {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* notes sub total  */
+.sub-total-section {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.notes-teams-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.notes-teams-section {
+  margin-left: 10px;
+}
+.notes-teams-lable {
+  font-weight: 600;
+  margin-top: 10px;
+}
+.notes-teams-input {
+  margin: 5px 0px 4px 0px;
+  padding: 10px !important;
+}
+
+.sub-total-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.sub-total-section {
+  margin-right: 10px;
+}
+.sub-total-lable {
+  font-weight: 600;
+  margin-top: 10px;
+}
+.sub-total-input {
+  margin: 5px 0px 4px 0px;
+  padding: 10px !important;
+}
+/* end notes sub total  */

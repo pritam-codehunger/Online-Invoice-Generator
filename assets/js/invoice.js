@@ -81,7 +81,7 @@ function updateTemplate() {
                 <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
                 <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
                 <td class="amount"></td>
-                <td class="hide-t"><button onclick="removeLineItem(this)">Remove</button></td>
+                <td class="hide-t"><button class="remove-btn" onclick="removeLineItem(this)">Remove</button></td>
             </tr>
         </tbody>`;
     }
@@ -102,7 +102,7 @@ function updateTemplate() {
                 <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
                 <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
                 <td class="amount"></td>
-                <td class="hide-t"><button onclick="removeLineItem(this)">Remove</button></td>
+                <td class="hide-t"><button class="remove-btn" onclick="removeLineItem(this)">Remove</button></td>
             </tr>
         </tbody>`;
 
@@ -120,7 +120,7 @@ function updateTemplate() {
             <tr>
                 <td><input class="form-control" type="text" placeholder="Description of item/service..."></td>
                 <td><input type="number" class="amount" value="0" oninput="calculateTotalOnlyAmount()"></td>
-                <td class="hide-t"><button onclick="removeLineItem(this)">Remove</button></td>
+                <td class="hide-t"><button class="remove-btn" onclick="removeLineItem(this)">Remove</button></td>
             </tr>
         </tbody>`;
     }
@@ -152,17 +152,26 @@ document.getElementById('logoInput').addEventListener('change', function (event)
             const logoImage = document.getElementById('logoImage');
             logoImage.src = e.target.result;
             logoImage.style.display = 'block';
-            document.querySelector('.invoice-logo span').style.display = 'none';
+            document.querySelector('.invoice-logo  span').style.display = 'none';
             document.getElementById('logoInput').style.display = 'none';
             document.getElementById('removeLogo').style.display = 'block';
+
+            const invoiceLogo = document.querySelector('.invoice-logo');
+            invoiceLogo.style.padding = '0';
+            invoiceLogo.style.borderRadius = '0';
         }
         reader.readAsDataURL(input.files[0]);
     }
 });
 
 document.getElementById('removeLogo').addEventListener('click', function () {
+
+    const invoiceLogo = document.querySelector('.invoice-logo');
+    invoiceLogo.style.padding = '30px 30px';
+    invoiceLogo.style.borderRadius = '10px';
+
     document.getElementById('logoImage').style.display = 'none';
-    document.querySelector('.invoice-logo span').style.display = 'block';
+    document.querySelector('.invoice-logo  span').style.display = 'block';
     document.getElementById('logoInput').style.display = 'block';
     this.style.display = 'none';
     document.getElementById('logoInput').value = '';
@@ -193,14 +202,14 @@ function addLineItem() {
     <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
     <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
     <td class="amount">${currencySymbol}00.00</td>
-    <td class="hide-t"><button onclick="removeLineItem(this)">Remove</button></td>
+    <td class="hide-t"><button class="remove-btn" onclick="removeLineItem(this)">Remove</button></td>
     `;
     }
     if (template == 'amounts-only') {
         newRow.innerHTML = `
     <td><input class="form-control" type="text" placeholder="Description of item/service..."></td>
     <td><input type="number" class="amount" value="0" oninput="calculateTotalOnlyAmount()"></td>
-    <td class="hide-t"><button onclick="removeLineItem(this)">Remove</button></td>
+    <td class="hide-t"><button class="remove-btn" onclick="removeLineItem(this)">Remove</button></td>
     `;
     }
 
@@ -277,7 +286,7 @@ function calculateInvoice() {
 }
 //end calculate
 //this function use enter filed in text this store in p tag
-function  updateContent(inputSelector, outputSelector) {
+function updateContent(inputSelector, outputSelector) {
     document.querySelectorAll(inputSelector).forEach(function (element) {
         element.addEventListener('input', function () {
             document.querySelector(outputSelector).textContent = this.value;
@@ -286,12 +295,9 @@ function  updateContent(inputSelector, outputSelector) {
 }
 updateContent('.note-write', '.note-show');
 updateContent('.term-write', '.term-show');
-updateContent('.from-write', '.from-show');
-updateContent('.biil-to-write', '.biil-to-show');
-updateContent('.ship-to-write', '.ship-to-show');
 updateContent('.invoice-heading', '.invoice-title');
 //this use enter filed in text this store in p tag.this p tag hide on invoice
-document.querySelectorAll('.invoice-title,.note-show,.term-show,.from-show,.biil-to-show,.ship-to-show').forEach(function (element) {
+document.querySelectorAll('.invoice-title,.note-show,.term-show').forEach(function (element) {
     element.classList.add('hidden');
 });
 
@@ -308,16 +314,16 @@ function hideEmptyFields() {
     document.getElementById('invoice').classList.remove('card');
 
 
-    document.querySelectorAll('.invoice-heading,.note-write,.term-write,.from-write,.biil-to-write,.ship-to-write').forEach(function (element) {
+    document.querySelectorAll('.invoice-heading,.note-write,.term-write,#custom-date-group').forEach(function (element) {
         element.classList.add('hidden');
     });
 
     //this use enter filed in text this store in p tag.this p tag show in pdf on invoice
-    document.querySelectorAll('.invoice-title,.note-show,.term-show,.from-show,.biil-to-show,.ship-to-show').forEach(function (element) {
+    document.querySelectorAll('.invoice-title,.note-show,.term-show').forEach(function (element) {
         element.classList.remove('hidden');
     });
 
-    const inputs = document.querySelectorAll('#invoice input, #invoice textarea');
+    const inputs = document.querySelectorAll('#invoice input, #invoice textarea,#invoice select');
     const inputparent = document.querySelectorAll('.parent-hide');
     const hideTElements = document.querySelectorAll('.hide-t');
 
@@ -348,14 +354,14 @@ function showHiddenFields() {
     document.getElementById('invoice').classList.add('card');
 
 
-    document.querySelectorAll('.invoice-heading,.note-write,.term-write,.from-write,.biil-to-write,.ship-to-write').forEach(function (element) {
+    document.querySelectorAll('.invoice-heading,.note-write,.term-write,#custom-date-group').forEach(function (element) {
         element.classList.remove('hidden');
     });
-    document.querySelectorAll('.invoice-title,.note-show,.term-show,.from-show,.biil-to-show,.ship-to-show').forEach(function (element) {
+    document.querySelectorAll('.invoice-title,.note-show,.term-show').forEach(function (element) {
         element.classList.add('hidden');
     });
 
-    const inputs = document.querySelectorAll('#invoice input, #invoice textarea');
+    const inputs = document.querySelectorAll('#invoice input, #invoice textarea,#invoice select');
     const inputparent = document.querySelectorAll('.parent-hide');
     const hideTElements = document.querySelectorAll('.hide-t');
 
@@ -375,113 +381,53 @@ function showHiddenFields() {
 //require this filed
 function validateFields() {
     const items = document.querySelectorAll('#invoice-items tr');
-    const fromField = document.getElementById('from');
-    const billToField = document.getElementById('billTo');
-    const from = fromField.value.trim();
-    const billTo = billToField.value.trim();
+    const from = document.getElementById('from_name');
+    const billTo = document.getElementById('bill_to_name');
+    let isValid = true, errorMessage = '';
 
-    let isValid = true;
-    let errorMessage = '';
+    const showError = (field, message) => {
+        field.classList.add('error');
+        errorMessage += `<div class="alert alert-danger alert-dismissible fade show" role="alert">${message}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
+        isValid = false;
+    };
 
-    var descriptionOneMess = 1;
-    var quantityOneMess = rateOneMess = 1
-    var amountOneMess = 1;
-
-
-
+    const clearError = (field) => {
+        field.classList.remove('error');
+    };
 
     items.forEach(item => {
-        const descriptionField = item.querySelector('td input[type="text"]');
-        const description = descriptionField.value.trim();
+        const [descriptionField, quantityField, rateField] = item.querySelectorAll('td input');
+        const description = descriptionField?.value.trim();
+        const quantity = quantityField?.value.trim();
+        const rate = rateField?.value.trim();
 
-        //Description of item/service Filed
-        if (!description) {
-            isValid = false;
-            descriptionField.style.border = '2px solid red';
-            if (descriptionOneMess === 1) {
-                errorMessage += '<div class="alert alert-danger alert-dismissible fade show" role="alert">Description of item/service is required.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                descriptionOneMess = 0;
-            }
-        } else {
-            descriptionField.style.border = '';
+        if (!description) showError(descriptionField, 'Description of item/service is required.');
+        else clearError(descriptionField);
+
+        if (['hours', 'quantity'].includes(template)) {
+            if (!quantity) showError(quantityField, `${template === 'hours' ? 'Hours' : 'Quantity'} is required.`);
+            else clearError(quantityField);
+
+            if (!rate) showError(rateField, 'Rate is required.');
+            else clearError(rateField);
         }
 
-        //hours or quantity filed
-        if (template == 'hours' || template == 'quantity') {
-            const quantityField = item.querySelector('td input[type="number"]');
-            const rateField = item.querySelectorAll('td input[type="number"]')[1];
-
-            const quantity = quantityField.value.trim();
-            const rate = rateField.value.trim();
-
-
-            if (!quantity) {
-                isValid = false;
-                quantityField.style.border = '2px solid red';
-
-
-                var erroStrHQ = (template == 'hours') ? 'Hours' : 'Quantity';
-
-                if (quantityOneMess === 1) {
-                    errorMessage += '<div class="alert alert-danger alert-dismissible fade show" role="alert">' + erroStrHQ + ' is required.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                    quantityOneMess = 0;
-                }
-            } else {
-                quantityField.style.border = '';
-            }
-
-            if (!rate) {
-                isValid = false;
-                rateField.style.border = '2px solid red';
-                if (rateOneMess === 1) {
-                    errorMessage += '<div class="alert alert-danger alert-dismissible fade show" role="alert">Rate is required.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                    rateOneMess = 0;
-                }
-            } else {
-                rateField.style.border = '';
-            }
-
-        }
-        //amounts-only filed
-        if (template == 'amounts-only') {
-            const amountField = item.querySelector('td input[type="number"]');
-            const amount = amountField.value.trim();
-
-            if (!amount) {
-                isValid = false;
-                amountField.style.border = '2px solid red';
-                if (amountOneMess === 1) {
-                    errorMessage += '<div class="alert alert-danger alert-dismissible fade show" role="alert">Amount is required.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                    amountOneMess = 0;
-                }
-            } else {
-                amountField.style.border = '';
-            }
+        if (template === 'amounts-only') {
+            if (!quantity) showError(quantityField, 'Amount is required.');
+            else clearError(quantityField);
         }
     });
 
-    if (!from) {
-        isValid = false;
-        fromField.style.border = '2px solid red';
-        errorMessage += '<div class="alert alert-danger alert-dismissible fade show" role="alert">From field is required.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-    } else {
-        fromField.style.border = '';
-    }
+    if (!from.value.trim()) showError(from, 'Business Name field is required.');
+    else clearError(from);
 
-    if (!billTo) {
-        isValid = false;
-        billToField.style.border = '2px solid red';
-        errorMessage += '<div class="alert alert-danger alert-dismissible fade show" role="alert">Bill To field is required.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-    } else {
-        billToField.style.border = '';
-    }
+    if (!billTo.value.trim()) showError(billTo, 'Client Name field is required.');
+    else clearError(billTo);
 
-    const errorMessageDiv = document.getElementById('ErrorMessage');
-    errorMessageDiv.innerHTML = errorMessage;
+    document.getElementById('ErrorMessage').innerHTML = errorMessage;
 
     return isValid;
 }
-
 
 // Function to download PDF
 async function downloadPDF() {
@@ -518,12 +464,12 @@ document.getElementById('downloadInvoice').addEventListener('click', downloadPDF
 document.getElementById('sendEmailButton').addEventListener('click', function () {
     document.getElementById('emailModal').style.display = 'block';
 });
-document.getElementById('closeemailModal').addEventListener('click', function () {
-    document.getElementById('emailModal').style.display = 'none';
-});
-document.getElementById('btncloseemailModal').addEventListener('click', function () {
-    document.getElementById('emailModal').style.display = 'none';
-});
+// document.getElementById('closeemailModal').addEventListener('click', function () {
+//     document.getElementById('emailModal').style.display = 'none';
+// });
+// document.getElementById('btncloseemailModal').addEventListener('click', function () {
+//     document.getElementById('emailModal').style.display = 'none';
+// });
 
 
 
@@ -812,11 +758,13 @@ function inputHideUPIQrCode() {
 }
 // upi qr code end
 
-// Upload Authorized Signatory
+// Upload Authorized Signator
 document.getElementById('signatoryInput').addEventListener('change', function (event) {
     const input = event.target;
     if (input.files && input.files[0]) {
+
         const reader = new FileReader();
+
         reader.onload = function (e) {
             const signatoryImage = document.getElementById('signatoryImage');
             signatoryImage.src = e.target.result;
@@ -824,12 +772,22 @@ document.getElementById('signatoryInput').addEventListener('change', function (e
             document.querySelector('.authorized-signatory span').style.display = 'none';
             document.getElementById('signatoryInput').style.display = 'none';
             document.getElementById('removeSignatory').style.display = 'block';
+
+            const authorizedSignatory = document.querySelector('.authorized-signatory');
+            authorizedSignatory.style.padding = '0';
+            authorizedSignatory.style.borderRadius = '0';
         }
         reader.readAsDataURL(input.files[0]);
     }
 });
 
+
 document.getElementById('removeSignatory').addEventListener('click', function () {
+
+    const authorizedSignatory = document.querySelector('.authorized-signatory');
+    authorizedSignatory.style.padding = '10px';
+    authorizedSignatory.style.borderRadius = '10px';
+
     document.getElementById('signatoryImage').style.display = 'none';
     document.querySelector('.authorized-signatory span').style.display = 'block';
     document.getElementById('signatoryInput').style.display = 'block';
