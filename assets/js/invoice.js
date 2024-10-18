@@ -309,8 +309,11 @@ function hideEmptyFields() {
     inputHideAuthorized();
 
     document.getElementById('invoice').classList.add('hide-borders');
-    //this function use enter filed in text this store in p tag is hide
 
+    document.getElementById('invoice-size').classList.add('col-md-12');
+    document.getElementById('invoice-size').classList.remove('col-md-9');
+    
+    //this function use enter filed in text this store in p tag is hide
     document.getElementById('invoice').classList.remove('card');
 
 
@@ -349,6 +352,9 @@ function showHiddenFields() {
     inputShowBankDetails();
     inputShowUPIQrCode();
     inputShowAuthorized();
+
+    document.getElementById('invoice-size').classList.add('col-md-9');
+    document.getElementById('invoice-size').classList.remove('col-md-12');
 
     document.getElementById('invoice').classList.remove('hide-borders');
     document.getElementById('invoice').classList.add('card');

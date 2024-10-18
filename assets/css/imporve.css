@@ -27,33 +27,34 @@ select.error {
 }
 /* header on invoice*/
 .heading-of-invoice {
-  font-weight: 700;
+  font-weight: 900;
   display: flex;
   justify-content: center;
   margin: 20px 0px;
+  color: #048b9f;
+  font-size: 60px;
 }
-
 .btn-pdf {
-  color: var(--primary-color);
-  background-color: var(--primary-light-color);
-  border-color: var(--primary-light-color);
+  color: #048b9f;
+  background-color: #048b9f21;
+  border-color: #048b9f21;
   font-weight: 500;
 }
 .btn-pdf:hover {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+  background-color: #048b9f;
+  border-color: #048b9f;
   color: white;
 }
 .btn-email {
   color: white;
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+  background-color: #048b9f;
+  border-color: #048b9f;
   font-weight: 500;
 }
 .btn-email:hover {
-  background-color: var(--primary-light-color);
-  border-color: var(--primary-light-color);
-  color: var(--primary-color);
+  background-color: #048b9f21;
+  border-color: #048b9f21;
+  color: #048b9f;
 }
 
 /* end header on invoice */
@@ -67,7 +68,7 @@ select.error {
   align-items: flex-start;
 }
 .heading-section {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 .heading-label-show {
   margin-top: 30px;
@@ -181,3 +182,21 @@ select.error {
   padding: 10px !important;
 }
 /* end notes sub total  */
+
+
+#google_translate_element {
+  display: inline-block; /* Keep it inline with other elements */
+}
+
+/* html.translated-ltr .navbar-inner, html.translated-ltr .navbar-inner { padding-top: 39px; } */
+
+
+/* 
+.skiptranslate{
+  visibility: hidden !important;
+  display: none !important;
+}
+.VIpgJd-ZVi9od-ORHb-OEVmcd{
+  display: none !important;
+} */
+
