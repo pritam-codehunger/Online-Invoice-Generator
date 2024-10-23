@@ -115,6 +115,14 @@ body {
 /* Hide Google Translate contant right click or hover show pop up this remove */
 #goog-gt-tt{display: none !important; top: 0px !important; }
 /*end  Hide Google Translate contant right click or hover show pop up this remove */
+
+/* Hide Google Translate loading icon remove */
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc {
+    display: none;
+}
+/*end  Hide Google Translate loading icon remove */
+
+
 `;
 
 document.head.appendChild(style);
