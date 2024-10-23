@@ -1,0 +1,15 @@
+.histroy-table-heading{
+  background-color: #048b9f !important;
+  color: white;
+}
+.download-histroy {
+  color: #048b9f;
+  background-color: #048b9f21;
+  border-color: #048b9f21;
+  font-weight: 500;
+}
+.download-histroy:hover {
+  background-color: #048b9f;
+  border-color: #048b9f;
+  color: white;
+}

@@ -389,6 +389,7 @@ function validateFields() {
     const items = document.querySelectorAll('#invoice-items tr');
     const from = document.getElementById('from_name');
     const billTo = document.getElementById('bill_to_name');
+    const invoiceHeading = document.getElementById('invoice-heading');
     let isValid = true, errorMessage = '';
 
     const showError = (field, message) => {
@@ -424,6 +425,11 @@ function validateFields() {
         }
     });
 
+    
+
+    if (!invoiceHeading.value.trim()) showError(invoiceHeading, 'Invoice Heading field is required.');
+    else clearError(invoiceHeading);
+
     if (!from.value.trim()) showError(from, 'Business Name field is required.');
     else clearError(from);
 
@@ -458,6 +464,8 @@ async function downloadPDF() {
 
     pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
     pdf.save('invoice.pdf');
+
+    // Math.random();
 
     document.getElementById('LoadSpinner').style.display = 'none';
     document.body.style.background = '';
