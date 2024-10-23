@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #048b9f;
+  --primary-change-color: #048b9f;
   --input-border-color: #ddd;
   --input-bg-color: #f8f9fa;
   --primary-light-color: #048b9f21;
@@ -15,8 +15,8 @@ select {
 input:focus,
 textarea:focus,
 select:focus {
-  border: 1px solid var(--primary-color) !important;
-  box-shadow: 0 0 0 2px var(--primary-color) !important;
+  border: 1px solid var(--primary-change-color) !important;
+  box-shadow: 0 0 0 2px var(--primary-change-color) !important;
 }
 
 /* Error styling */
@@ -75,7 +75,7 @@ select.error {
   margin-left: 20px;
 }
 .invoice-title {
-  color: var(--primary-color);
+  color: var(--primary-change-color);
 }
 .invoice-heading {
   font-size: 2em;
@@ -84,7 +84,7 @@ select.error {
   background-color: transparent;
   margin-top: 20px;
   padding: 18px !important;
-  color: var(--primary-color);
+  color: var(--primary-change-color);
   margin-left: 20px;
 }
 /* from */
@@ -183,20 +183,4 @@ select.error {
 }
 /* end notes sub total  */
 
-
-#google_translate_element {
-  display: inline-block; /* Keep it inline with other elements */
-}
-
-/* html.translated-ltr .navbar-inner, html.translated-ltr .navbar-inner { padding-top: 39px; } */
-
-
-/* 
-.skiptranslate{
-  visibility: hidden !important;
-  display: none !important;
-}
-.VIpgJd-ZVi9od-ORHb-OEVmcd{
-  display: none !important;
-} */
 
