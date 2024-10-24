@@ -77,7 +77,7 @@ function updateTemplate() {
         </thead>
         <tbody id="invoice-items">
             <tr>
-                <td><input class="form-control" type="text" placeholder="Description of item/service..."></td>
+                <td><input type="text" class="form-control"  placeholder="Description of item/service..."></td>
                 <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
                 <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
                 <td class="amount"></td>
@@ -98,7 +98,7 @@ function updateTemplate() {
         </thead>
         <tbody id="invoice-items">
             <tr>
-                <td><input class="form-control" type="text" placeholder="Description of item/service..."></td>
+                <td><input type="text" class="form-control"placeholder="Description of item/service..."></td>
                 <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
                 <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
                 <td class="amount"></td>
@@ -118,7 +118,7 @@ function updateTemplate() {
         </thead>
         <tbody id="invoice-items">
             <tr>
-                <td><input class="form-control" type="text" placeholder="Description of item/service..."></td>
+                <td><input type="text" class="form-control"  placeholder="Description of item/service..."></td>
                 <td><input type="number" class="amount" value="0" oninput="calculateTotalOnlyAmount()"></td>
                 <td class="hide-t"><button class="remove-btn" onclick="removeLineItem(this)">Remove</button></td>
             </tr>
@@ -198,7 +198,7 @@ function addLineItem() {
 
     if (template == 'hours' || template == 'quantity') {
         newRow.innerHTML = `
-    <td><input class="form-control" type="text" placeholder="Description of item/service..."></td>
+    <td><input type="text" class="form-control"  placeholder="Description of item/service..."></td>
     <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
     <td><input class="form-control" type="number" value="0" oninput="calculateAmount(this)"></td>
     <td class="amount">${currencySymbol}00.00</td>
@@ -207,7 +207,7 @@ function addLineItem() {
     }
     if (template == 'amounts-only') {
         newRow.innerHTML = `
-    <td><input class="form-control" type="text" placeholder="Description of item/service..."></td>
+    <td><input type="text" class="form-control" placeholder="Description of item/service..."></td>
     <td><input type="number" class="amount" value="0" oninput="calculateTotalOnlyAmount()"></td>
     <td class="hide-t"><button class="remove-btn" onclick="removeLineItem(this)">Remove</button></td>
     `;
@@ -439,7 +439,20 @@ function validateFields() {
     return isValid;
 }
 
-// Function to download PDF
+
+// Character Limits
+const inputs = document.querySelectorAll('input[type="text"]');
+const textareas = document.querySelectorAll('textarea');
+
+inputs.forEach(input => {
+    input.maxLength = 50; // Set max length for input fields
+});
+
+textareas.forEach(textarea => {
+    textarea.maxLength = 200; // Set max length for textareas
+});
+// end Character Limits
+
 async function downloadPDF() {
     if (!validateFields()) {
         return;
@@ -451,7 +464,6 @@ async function downloadPDF() {
 
     hideEmptyFields();
 
-
     const invoiceTitle = document.querySelector('.invoice-title');
     const invoiceHeading = invoiceTitle.textContent;
 
@@ -459,33 +471,68 @@ async function downloadPDF() {
     const invoiceTotal = invoicetotalId.textContent;
 
     const invoice = document.getElementById('invoice');
-    const canvas = await html2canvas(invoice);
+
+    const canvas = await html2canvas(invoice, {
+        scale: 2, // Double the scale to improve quality
+        useCORS: true // Enable CORS if there are external resources
+    });
     const imgData = canvas.toDataURL('image/png');
+
+    // Compress the image data to reduce size
+    const compressedImgData = await compressImage(imgData, 0.5); // 0.5 for 50% quality
 
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF('p', 'pt', 'a4');
-    const imgProps = pdf.getImageProperties(imgData);
+    const imgProps = pdf.getImageProperties(compressedImgData);
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
     const pdfFileName = 'invoice.pdf';
-    pdf.save(pdfFileName);
 
-    // Save download info in localStorage
-    const downloadHistory = JSON.parse(localStorage.getItem('downloadHistory')) || [];
-    const downloadEntry = {
-        id: downloadHistory.length + 1,
-        heading: invoiceHeading,
-        fileName: pdfFileName,
-        total: invoiceTotal,
-        date: getcurrentDateTime(),
-        fileData: imgData // Save base64 data for re-download
-    };
-    downloadHistory.push(downloadEntry);
-    localStorage.setItem('downloadHistory', JSON.stringify(downloadHistory));
+    const pageHeight = pdf.internal.pageSize.height;
 
-    // ===========
+    const totalHeight = imgProps.height * (pdfWidth / imgProps.width);
+    const numberOfPages = Math.ceil(totalHeight / pageHeight);
+
+    for (let i = 0; i < numberOfPages; i++) {
+        const yOffset = i * pageHeight;
+        if (i > 0) {
+            pdf.addPage();
+        }
+
+        pdf.addImage(compressedImgData, 'PNG', 0, -yOffset, pdfWidth, totalHeight);
+    }
+
+    pdf.save('invoice.pdf');
+
+    try {
+        const downloadHistory = JSON.parse(localStorage.getItem('downloadHistory')) || [];
+        const downloadEntry = {
+            id: downloadHistory.length + 1,
+            heading: invoiceHeading,
+            fileName: pdfFileName,
+            total: invoiceTotal,
+            date: getcurrentDateTime(),
+            fileData: compressedImgData
+        };
+
+        if (downloadHistory.length >= 5) {
+            downloadHistory.shift();
+        }
+
+        downloadHistory.push(downloadEntry);
+        localStorage.setItem('downloadHistory', JSON.stringify(downloadHistory));
+    } catch (error) {
+        const downloadHistory = JSON.parse(localStorage.getItem('downloadHistory')) || [];
+        downloadHistory.shift();
+        console.log('adw');
+        if (error.name === 'QuotaExceededError') {
+            console.warn('LocalStorage quota exceeded. Skipping storing data.');
+        } else {
+            console.error('Error while storing data in LocalStorage:', error);
+        }
+    }
+
 
     document.getElementById('LoadSpinner').style.display = 'none';
     document.body.style.background = '';
@@ -493,6 +540,28 @@ async function downloadPDF() {
 
     showHiddenFields();
 }
+
+function compressImage(base64Image, quality = 0.5) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.src = base64Image;
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            ctx.drawImage(img, 0, 0);
+
+            const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+            resolve(compressedBase64);
+        };
+    });
+}
+
+
+
 document.getElementById('downloadInvoice').addEventListener('click', downloadPDF);
 
 document.getElementById('sendEmailButton').addEventListener('click', function () {

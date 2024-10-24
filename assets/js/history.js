@@ -4,6 +4,7 @@ function loadDownloadHistory() {
     const tableBody = document.querySelector('#download-history-table tbody');
     tableBody.innerHTML = '';
 
+
     if (downloadHistory.length === 0) {
         const noDataMessage = document.createElement('tr');
         const messageCell = document.createElement('td');
@@ -15,11 +16,21 @@ function loadDownloadHistory() {
         return;
     }
 
+    downloadHistory.sort((a, b) => {
+        const dateA = parseDateString(a.date);
+        const dateB = parseDateString(b.date);
+        return dateB - dateA;
+    });
+
+    var a = 0;
     downloadHistory.forEach(entry => {
+        
+        a++;
+
         const row = document.createElement('tr');
 
         const noCell = document.createElement('td');
-        noCell.textContent = entry.id;
+        noCell.textContent = a;
         row.appendChild(noCell);
 
         const headingCell = document.createElement('td');
@@ -58,11 +69,42 @@ function downloadPDF(entry) {
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-    pdf.addImage(entry.fileData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-    pdf.save(entry.fileName);
+    const pageHeight = pdf.internal.pageSize.height;
+    const totalHeight = imgProps.height * (pdfWidth / imgProps.width);
+    const numberOfPages = Math.ceil(totalHeight / pageHeight);
+
+    // Add the image to the PDF across multiple pages
+    for (let i = 0; i < numberOfPages; i++) {
+        const yOffset = i * pageHeight;
+        if (i > 0) {
+            pdf.addPage();
+        }
+        pdf.addImage(entry.fileData, 'PNG', 0, -yOffset, pdfWidth, totalHeight);
+    }
+    pdf.save('invoice.pdf');
 }
 //end Function to download PDF from history
 
 
 // Load history when the page is ready
 document.addEventListener('DOMContentLoaded', loadDownloadHistory);
+
+
+// Helper function to parse date string in "DD-MM-YYYY HH:mm AM/PM" format
+function parseDateString(dateString) {
+    const [datePart, timePart] = dateString.split(' ');
+    const [day, month, year] = datePart.split('-').map(Number);
+
+    let [hours, minutes] = timePart.split(':');
+    const period = minutes.split(' ')[1]; // AM or PM
+    minutes = parseInt(minutes, 10);
+    hours = parseInt(hours, 10);
+
+    if (period === 'PM' && hours !== 12) {
+        hours += 12;
+    } else if (period === 'AM' && hours === 12) {
+        hours = 0;
+    }
+
+    return new Date(year, month - 1, day, hours, minutes);
+}
