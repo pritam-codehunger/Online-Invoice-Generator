@@ -312,7 +312,7 @@ function hideEmptyFields() {
 
     document.getElementById('invoice-size').classList.add('col-md-12');
     document.getElementById('invoice-size').classList.remove('col-md-9');
-    
+
     //this function use enter filed in text this store in p tag is hide
     document.getElementById('invoice').classList.remove('card');
 
@@ -425,8 +425,6 @@ function validateFields() {
         }
     });
 
-    
-
     if (!invoiceHeading.value.trim()) showError(invoiceHeading, 'Invoice Heading field is required.');
     else clearError(invoiceHeading);
 
@@ -452,6 +450,14 @@ async function downloadPDF() {
     document.body.style.cursor = 'not-allowed';
 
     hideEmptyFields();
+
+
+    const invoiceTitle = document.querySelector('.invoice-title');
+    const invoiceHeading = invoiceTitle.textContent;
+
+    const invoicetotalId = document.querySelector('#total');
+    const invoiceTotal = invoicetotalId.textContent;
+
     const invoice = document.getElementById('invoice');
     const canvas = await html2canvas(invoice);
     const imgData = canvas.toDataURL('image/png');
@@ -463,9 +469,23 @@ async function downloadPDF() {
     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
     pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-    pdf.save('invoice.pdf');
+    const pdfFileName = 'invoice.pdf';
+    pdf.save(pdfFileName);
 
-    // Math.random();
+    // Save download info in localStorage
+    const downloadHistory = JSON.parse(localStorage.getItem('downloadHistory')) || [];
+    const downloadEntry = {
+        id: downloadHistory.length + 1,
+        heading: invoiceHeading,
+        fileName: pdfFileName,
+        total: invoiceTotal,
+        date: getcurrentDateTime(),
+        fileData: imgData // Save base64 data for re-download
+    };
+    downloadHistory.push(downloadEntry);
+    localStorage.setItem('downloadHistory', JSON.stringify(downloadHistory));
+
+    // ===========
 
     document.getElementById('LoadSpinner').style.display = 'none';
     document.body.style.background = '';
@@ -478,6 +498,7 @@ document.getElementById('downloadInvoice').addEventListener('click', downloadPDF
 document.getElementById('sendEmailButton').addEventListener('click', function () {
     document.getElementById('emailModal').style.display = 'block';
 });
+
 // document.getElementById('closeemailModal').addEventListener('click', function () {
 //     document.getElementById('emailModal').style.display = 'none';
 // });

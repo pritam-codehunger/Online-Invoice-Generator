@@ -18,45 +18,33 @@
     <header id="header"></header>
 
     <div class="container mt-5">
-        <table class="table table-striped table-hover table-bordered ">
+        <table class="table table-striped table-hover table-bordered " id="download-history-table" border="1">
             <thead class="histroy-table-heading">
                 <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Heading</th>
+                    <th scope="col">No</th>
+                    <th scope="col">PDF Heading</th>
                     <th scope="col">Total</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Download</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Shop 1</td>
-                    <td>$119</td>
-                    <td>
-                        <button class="btn btn-outline-secondary btn-sm move-to-wishlist download-histroy">
-                            Download
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Shop 2</td>
-                    <td>$149</td>
-                    <td>
-                        <button class="btn btn-outline-secondary btn-sm move-to-wishlist download-histroy">
-                            Download
-                        </button>
-                    </td>
-                </tr>
+                <!-- Rows will be dynamically added -->
             </tbody>
         </table>
     </div>
 
     <div id="footer"></div>
+    <!-- src use pdf download-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <script src="assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="assets/js/popper.min.js" crossorigin="anonymous"></script>
     <script src="assets/js/jquery.js" crossorigin="anonymous"></script>
     <script src="assets/js/js.js" crossorigin="anonymous"></script>
+    <script src="assets/js/history.js" crossorigin="anonymous"></script>
+
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 

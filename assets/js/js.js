@@ -47,7 +47,7 @@ $(document).ready(function () {
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'en',
-        includedLanguages: 'en,es,fr,de,it,hi', 
+        includedLanguages: 'en,es,fr,de,it,hi',
         autoDisplay: false,
     }, 'google_translate_element');
 }
@@ -129,3 +129,22 @@ document.head.appendChild(style);
 //end css add for google Translate
 
 //end google Translate in menu bar
+
+
+// get current time
+function getcurrentDateTime() {
+    const now = new Date();
+    const day = now.getDate();
+    const month = now.getMonth() + 1;
+    const year = now.getFullYear();
+    let hours = now.getHours();
+    const minutes = now.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    const formattedDate = `${day.toString().padStart(2, '0')}-${month.toString().padStart(2, '0')}-${year}`;
+    const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+    const formattedDateTime = `${formattedDate} ${formattedTime}`;
+    return formattedDateTime;
+}
+//end get current time
