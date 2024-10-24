@@ -1,63 +1,82 @@
 // display download history
-function loadDownloadHistory() {
-    const downloadHistory = JSON.parse(localStorage.getItem('downloadHistory')) || [];
-    const tableBody = document.querySelector('#download-history-table tbody');
-    tableBody.innerHTML = '';
+async function loadDownloadHistory() {
+    try {
+        const downloadHistory = await getAllFromDatabase();
+        const tableBody = document.querySelector('#download-history-table tbody');
+        tableBody.innerHTML = '';
+
+        if (downloadHistory.length === 0) {
+            const noDataMessage = document.createElement('tr');
+            const messageCell = document.createElement('td');
+            messageCell.setAttribute('colspan', 5);
+            messageCell.textContent = 'No download history available.';
+            messageCell.classList.add('text-center', 'text-muted');
+            noDataMessage.appendChild(messageCell);
+            tableBody.appendChild(noDataMessage);
+            return;
+        }
 
 
-    if (downloadHistory.length === 0) {
-        const noDataMessage = document.createElement('tr');
-        const messageCell = document.createElement('td');
-        messageCell.setAttribute('colspan', 5);
-        messageCell.textContent = 'No download history available.';
-        messageCell.classList.add('text-center', 'text-muted');
-        noDataMessage.appendChild(messageCell);
-        tableBody.appendChild(noDataMessage);
-        return;
-    }
+        if (downloadHistory.length === 0) {
+            const noDataMessage = document.createElement('tr');
+            const messageCell = document.createElement('td');
+            messageCell.setAttribute('colspan', 5);
+            messageCell.textContent = 'No download history available.';
+            messageCell.classList.add('text-center', 'text-muted');
+            noDataMessage.appendChild(messageCell);
+            tableBody.appendChild(noDataMessage);
+            return;
+        }
 
-    downloadHistory.sort((a, b) => {
-        const dateA = parseDateString(a.date);
-        const dateB = parseDateString(b.date);
-        return dateB - dateA;
-    });
-
-    var a = 0;
-    downloadHistory.forEach(entry => {
-        
-        a++;
-
-        const row = document.createElement('tr');
-
-        const noCell = document.createElement('td');
-        noCell.textContent = a;
-        row.appendChild(noCell);
-
-        const headingCell = document.createElement('td');
-        headingCell.textContent = entry.heading;
-        row.appendChild(headingCell);
-
-        const totalCell = document.createElement('td');
-        totalCell.textContent = entry.total;
-        row.appendChild(totalCell);
-
-        const dateCell = document.createElement('td');
-        dateCell.textContent = entry.date;
-        row.appendChild(dateCell);
-
-        const downloadCell = document.createElement('td');
-        const downloadBtn = document.createElement('button');
-        downloadBtn.textContent = 'Download';
-        downloadBtn.classList.add('btn', 'btn-outline-secondary', 'btn-sm', 'move-to-wishlist', 'download-histroy');
-        downloadBtn.addEventListener('click', () => {
-            downloadPDF(entry);
+        downloadHistory.sort((a, b) => {
+            const dateA = parseDateString(a.date);
+            const dateB = parseDateString(b.date);
+            return dateB - dateA;
         });
-        downloadCell.appendChild(downloadBtn);
-        row.appendChild(downloadCell);
 
-        tableBody.appendChild(row);
-    });
+        var a = 0;
+        downloadHistory.forEach(entry => {
+
+            a++;
+
+            const row = document.createElement('tr');
+
+            const noCell = document.createElement('td');
+            noCell.textContent = a;
+            row.appendChild(noCell);
+
+            const headingCell = document.createElement('td');
+            headingCell.textContent = entry.heading;
+            row.appendChild(headingCell);
+
+            const totalCell = document.createElement('td');
+            totalCell.textContent = entry.total;
+            row.appendChild(totalCell);
+
+            const dateCell = document.createElement('td');
+            dateCell.textContent = entry.date;
+            row.appendChild(dateCell);
+
+            const downloadCell = document.createElement('td');
+            const downloadBtn = document.createElement('button');
+            downloadBtn.textContent = 'Download';
+            downloadBtn.classList.add('btn', 'btn-outline-secondary', 'btn-sm', 'move-to-wishlist', 'download-histroy');
+            downloadBtn.addEventListener('click', () => {
+                downloadPDF(entry);
+            });
+            downloadCell.appendChild(downloadBtn);
+            row.appendChild(downloadCell);
+
+            tableBody.appendChild(row);
+        });
+        // Initialize DataTable after the table is populated
+        $('#download-history-table').DataTable();
+
+    } catch (error) {
+        console.error('Error while loading data from IndexedDB:', error);
+    }
 }
+
 // end display download history
 
 // Function to download PDF from history
@@ -107,4 +126,41 @@ function parseDateString(dateString) {
     }
 
     return new Date(year, month - 1, day, hours, minutes);
+}
+
+
+// IndexedDB utility setup
+function openDatabase() {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open('DownloadHistoryDB', 1);
+
+        request.onupgradeneeded = (event) => {
+            const db = event.target.result;
+            if (!db.objectStoreNames.contains('downloadHistory')) {
+                db.createObjectStore('downloadHistory', { keyPath: 'id', autoIncrement: true });
+            }
+        };
+
+        request.onsuccess = (event) => {
+            resolve(event.target.result);
+        };
+
+        request.onerror = (event) => {
+            reject('Error opening database:', event.target.errorCode);
+        };
+    });
+}
+
+
+
+function getAllFromDatabase() {
+    return new Promise(async (resolve, reject) => {
+        const db = await openDatabase();
+        const transaction = db.transaction('downloadHistory', 'readonly');
+        const store = transaction.objectStore('downloadHistory');
+        const request = store.getAll();
+
+        request.onsuccess = (event) => resolve(event.target.result);
+        request.onerror = () => reject('Error retrieving data from database');
+    });
 }

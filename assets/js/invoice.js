@@ -440,18 +440,71 @@ function validateFields() {
 }
 
 
-// Character Limits
-const inputs = document.querySelectorAll('input[type="text"]');
-const textareas = document.querySelectorAll('textarea');
+// IndexedDB utility setup
+function openDatabase() {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open('DownloadHistoryDB', 1);
 
-inputs.forEach(input => {
-    input.maxLength = 50; // Set max length for input fields
-});
+        request.onupgradeneeded = (event) => {
+            const db = event.target.result;
+            if (!db.objectStoreNames.contains('downloadHistory')) {
+                db.createObjectStore('downloadHistory', { keyPath: 'id', autoIncrement: true });
+            }
+        };
 
-textareas.forEach(textarea => {
-    textarea.maxLength = 200; // Set max length for textareas
-});
-// end Character Limits
+        request.onsuccess = (event) => {
+            resolve(event.target.result);
+        };
+
+        request.onerror = (event) => {
+            reject('Error opening database:', event.target.errorCode);
+        };
+    });
+}
+
+function addToDatabase(entry) {
+    return new Promise(async (resolve, reject) => {
+        const db = await openDatabase();
+        const transaction = db.transaction('downloadHistory', 'readwrite');
+        const store = transaction.objectStore('downloadHistory');
+
+        const request = store.add(entry);
+
+        request.onsuccess = () => resolve();
+        request.onerror = () => reject('Error adding data to database');
+    });
+}
+
+function getAllFromDatabase() {
+    return new Promise(async (resolve, reject) => {
+        const db = await openDatabase();
+        const transaction = db.transaction('downloadHistory', 'readonly');
+        const store = transaction.objectStore('downloadHistory');
+        const request = store.getAll();
+
+        request.onsuccess = (event) => resolve(event.target.result);
+        request.onerror = () => reject('Error retrieving data from database');
+    });
+}
+
+function removeOldestEntry() {
+    return new Promise(async (resolve, reject) => {
+        const db = await openDatabase();
+        const transaction = db.transaction('downloadHistory', 'readwrite');
+        const store = transaction.objectStore('downloadHistory');
+        const request = store.openCursor();
+
+        request.onsuccess = (event) => {
+            const cursor = event.target.result;
+            if (cursor) {
+                cursor.delete();
+                resolve();
+            }
+        };
+
+        request.onerror = () => reject('Error deleting data from database');
+    });
+}
 
 async function downloadPDF() {
     if (!validateFields()) {
@@ -506,9 +559,7 @@ async function downloadPDF() {
     pdf.save('invoice.pdf');
 
     try {
-        const downloadHistory = JSON.parse(localStorage.getItem('downloadHistory')) || [];
         const downloadEntry = {
-            id: downloadHistory.length + 1,
             heading: invoiceHeading,
             fileName: pdfFileName,
             total: invoiceTotal,
@@ -516,22 +567,17 @@ async function downloadPDF() {
             fileData: compressedImgData
         };
 
-        if (downloadHistory.length >= 5) {
-            downloadHistory.shift();
-        }
+        const downloadHistory = await getAllFromDatabase();
 
-        downloadHistory.push(downloadEntry);
-        localStorage.setItem('downloadHistory', JSON.stringify(downloadHistory));
+        // if (downloadHistory.length >= 5) {
+        //     await removeOldestEntry();
+        // }
+
+        await addToDatabase(downloadEntry);
     } catch (error) {
-        const downloadHistory = JSON.parse(localStorage.getItem('downloadHistory')) || [];
-        downloadHistory.shift();
-        console.log('adw');
-        if (error.name === 'QuotaExceededError') {
-            console.warn('LocalStorage quota exceeded. Skipping storing data.');
-        } else {
-            console.error('Error while storing data in LocalStorage:', error);
-        }
+        console.error('Error while storing data in IndexedDB:', error);
     }
+
 
 
     document.getElementById('LoadSpinner').style.display = 'none';

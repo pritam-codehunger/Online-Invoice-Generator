@@ -1,4 +1,4 @@
-.histroy-table-heading{
+.histroy-table-heading {
   background-color: #048b9f !important;
   color: white;
 }
@@ -12,4 +12,8 @@
   background-color: #048b9f;
   border-color: #048b9f;
   color: white;
+}
+
+#download-history-table_filter {
+  margin-bottom: 10px !important;
 }
